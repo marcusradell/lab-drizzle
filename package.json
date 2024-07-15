@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "tsx watch ./src/index.ts",
     "generate": "drizzle-kit generate",
-    "migrate": "drizzle-kit migrate"
+    "migrate": "drizzle-kit migrate",
+    "sandbox": "tsx watch ./src/sandbox.ts"
   },
   "keywords": [],
   "author": "",

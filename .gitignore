@@ -3,3 +3,4 @@ pgadmin/
 node_modules/
 
 .env.local
+src/sandbox.ts
