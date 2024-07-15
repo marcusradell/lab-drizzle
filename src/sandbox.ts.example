@@ -1,0 +1,25 @@
+import { config } from "dotenv";
+import { createUser } from "./db/queries";
+import { faker } from "@faker-js/faker";
+
+// Not needed now, but in the future.
+config({ path: ".env.local" });
+
+const seed = 1;
+
+const main = async () => {
+  faker.seed(seed);
+
+  for (let i = 0; i < 10; i++) {
+    const firstName = faker.person.firstName;
+    const lastName = faker.person.lastName;
+
+    await createUser({
+      name: `${firstName} ${lastName}`,
+      age: faker.number.int({ min: 0, max: 110 }),
+      email: faker.internet.email(),
+    });
+  }
+};
+
+main();
