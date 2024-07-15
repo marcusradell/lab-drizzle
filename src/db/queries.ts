@@ -2,13 +2,6 @@ import { db } from ".";
 import { asc, between, count, eq, getTableColumns, sql } from "drizzle-orm";
 import { InsertUser, SelectUser, postsTable, usersTable } from "./schema";
 
-type User = {
-  id: number;
-  name: string;
-  age: number;
-  email: string;
-};
-
 export async function getUserById(id: SelectUser["id"]): Promise<
   Array<{
     id: number;
