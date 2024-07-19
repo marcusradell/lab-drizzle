@@ -1,4 +1,4 @@
-import { drizzle } from "drizzle-orm/postgres-js";
+import { drizzle, PostgresJsDatabase } from "drizzle-orm/postgres-js";
 import * as schema from "./schema";
 import { createQueries } from "./queries";
 import { DbClient } from "../../../db-client";

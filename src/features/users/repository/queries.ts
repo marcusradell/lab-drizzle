@@ -1,8 +1,8 @@
 import { eq } from "drizzle-orm";
 import { usersTable } from "./schema";
-import { InsertUser, SelectUser } from "./types";
+import { Db, InsertUser, SelectUser } from "./types";
 
-export const createQueries = (db: any) => {
+export const createQueries = (db: Db) => {
   async function getUserById(id: SelectUser["id"]): Promise<
     Array<{
       id: number;

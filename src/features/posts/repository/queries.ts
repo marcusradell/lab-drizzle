@@ -1,5 +1,6 @@
 import { asc, between, count, eq, getTableColumns, sql } from "drizzle-orm";
 import { postsTable } from "./schema";
+import { Db } from "./types";
 
 // TODO: reimplement
 // export async function getPostsCount(
@@ -27,7 +28,7 @@ import { postsTable } from "./schema";
 //     .offset((page - 1) * pageSize);
 // }
 
-export const createQueries = (db: any) => {
+export const createQueries = (db: Db) => {
   async function getPostsForLast24Hours(
     page = 1,
     pageSize = 5

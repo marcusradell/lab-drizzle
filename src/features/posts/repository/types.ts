@@ -1,4 +1,7 @@
-import { postsTable } from "./schema";
+import { PostgresJsDatabase } from "drizzle-orm/postgres-js";
+import * as schema from "./schema";
 
-export type InsertPost = typeof postsTable.$inferInsert;
-export type SelectPost = typeof postsTable.$inferSelect;
+export type Db = PostgresJsDatabase<typeof schema>;
+
+export type InsertPost = typeof schema.postsTable.$inferInsert;
+export type SelectPost = typeof schema.postsTable.$inferSelect;
