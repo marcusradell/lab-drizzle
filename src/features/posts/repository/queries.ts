@@ -8,7 +8,7 @@ import {
   sql,
 } from "drizzle-orm";
 import { postsTable } from "./schema";
-import { Db } from "./types";
+import { Db, InsertPost } from "./types";
 
 // TODO: reimplement
 // export async function getPostsCount(
@@ -70,5 +70,9 @@ export const createQueries = (db: Db) => {
       .groupBy(postsTable.userId);
   };
 
-  return { getPostsForLast24Hours, getPostsCount };
+  const addPost = async ({ userId, content, title }: InsertPost) => {
+    return db.insert(postsTable).values({ userId, content, title });
+  };
+
+  return { getPostsForLast24Hours, getPostsCount, addPost };
 };
