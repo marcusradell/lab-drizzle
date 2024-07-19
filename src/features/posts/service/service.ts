@@ -33,5 +33,9 @@ export const createService = (repository: Repository, getUsers: GetUsers) => {
     repository.addPost(postInput);
   };
 
-  return { getPostsCounts, addPost };
+  const getPostsForLast24Hours = async () => {
+    return repository.getPostsForLast24Hours();
+  };
+
+  return { getPostsCounts, addPost, getPostsForLast24Hours };
 };
