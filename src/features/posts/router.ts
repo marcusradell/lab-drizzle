@@ -14,5 +14,13 @@ export const createRouter = (service: Service) => {
     }
   });
 
+  router.post("/", async (req, res) => {
+    const { userId, title, content } = req.body;
+
+    await service.addPost({ userId, title, content });
+
+    res.sendStatus(201);
+  });
+
   return router;
 };
