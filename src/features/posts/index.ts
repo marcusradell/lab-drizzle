@@ -1,8 +1,11 @@
 import { DbClient } from "../../db-client.js";
-import { createRepository } from "./repository/index.js";
+import { createRepository } from "./repository";
+import { createService } from "./service.js";
 
 export const createPostsFeature = (dbClient: DbClient) => {
   const repository = createRepository(dbClient);
 
-  return { repository };
+  const service = createService(repository);
+
+  return { repository, service };
 };

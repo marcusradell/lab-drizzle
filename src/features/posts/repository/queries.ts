@@ -1,4 +1,12 @@
-import { asc, between, count, eq, getTableColumns, sql } from "drizzle-orm";
+import {
+  asc,
+  between,
+  count,
+  eq,
+  getTableColumns,
+  inArray,
+  sql,
+} from "drizzle-orm";
 import { postsTable } from "./schema";
 import { Db } from "./types";
 
@@ -52,5 +60,15 @@ export const createQueries = (db: Db) => {
       .offset((page - 1) * pageSize);
   }
 
-  return { getPostsForLast24Hours };
+  const getPostsCount = async (userIds: number[]) => {
+    return db
+      .select({
+        postsCount: count(postsTable.id),
+      })
+      .from(postsTable)
+      .where(inArray(postsTable.userId, userIds))
+      .groupBy(postsTable.userId);
+  };
+
+  return { getPostsForLast24Hours, getPostsCount };
 };
