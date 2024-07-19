@@ -1,5 +1,5 @@
 import express, { Router } from "express";
-import { createPostsFeature, createUsersFeature } from "./features";
+import { createPostsFeature, createUsersFeature } from "../features";
 import { createDbClient } from "./db-client";
 import { errorHandler } from "./error-handler";
 

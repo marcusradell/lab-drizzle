@@ -1,4 +1,4 @@
-import { DbClient } from "../../db-client";
+import { DbClient } from "../../app";
 import { createRepository } from "./repository";
 import { createRouter } from "./router";
 import { createService } from "./service";
