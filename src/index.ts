@@ -1,11 +1,20 @@
-import express from "express";
-const app = express();
-const port = 3000;
+import { config } from "dotenv";
+import { createApp } from "./app";
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
+const main = () => {
+  config({ path: ".env.local" });
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
-});
+  const port = Number(process.env.PORT);
+
+  if (isNaN(port)) {
+    throw Error("Missing PORT.");
+  }
+
+  const app = createApp();
+
+  app.listen(() => {
+    console.log(`App started on port ${port}.`);
+  });
+};
+
+main();
