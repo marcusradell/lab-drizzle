@@ -14,6 +14,12 @@ export const createRouter = (service: Service) => {
     }
   });
 
+  router.get("/last-24h", async (req, res) => {
+    const result = await service.getPostsForLast24Hours();
+
+    res.json(result);
+  });
+
   router.post("/", async (req, res) => {
     const { userId, title, content } = req.body;
 
