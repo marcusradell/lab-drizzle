@@ -7,5 +7,5 @@ export const createUsersFeature = (dbClient: DbClient) => {
 
   const service = createService(repository);
 
-  return { repository, service };
+  return { service };
 };

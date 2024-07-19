@@ -8,5 +8,5 @@ export const createPostsFeature = (dbClient: DbClient, getUsers: GetUsers) => {
 
   const service = createService(repository, getUsers);
 
-  return { repository, service };
+  return { service };
 };
