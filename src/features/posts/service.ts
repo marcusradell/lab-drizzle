@@ -1,6 +1,7 @@
 import { Repository } from "./repository";
 import { GetUsers } from "./types";
 
+// TODO: implement all repository methods as service methods.
 export const createService = (repository: Repository, getUsers: GetUsers) => {
   const getPostsCount = async (
     page = 1,
