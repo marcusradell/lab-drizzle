@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { Service } from "./types";
+import { Service } from "./service";
 
 export const createRouter = (service: Service) => {
   const router = Router();

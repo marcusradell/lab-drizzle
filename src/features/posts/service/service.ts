@@ -1,20 +1,11 @@
-import { Repository } from "./repository";
-import { GetUsers } from "./types";
+import { Repository } from "../repository";
+import { GetUsers, PostsCount } from "./types";
 
-// TODO: implement all repository methods as service methods.
 export const createService = (repository: Repository, getUsers: GetUsers) => {
-  const getPostsCount = async (
+  const getPostsCounts = async (
     page = 1,
     pageSize = 5
-  ): Promise<
-    Array<{
-      postsCount: number;
-      id: number;
-      name: string;
-      age: number;
-      email: string;
-    }>
-  > => {
+  ): Promise<PostsCount[]> => {
     const users = await getUsers(page, pageSize);
     const userIds = users.map(({ id }) => id);
 
@@ -35,5 +26,5 @@ export const createService = (repository: Repository, getUsers: GetUsers) => {
     return result;
   };
 
-  return { getPostsCount };
+  return { getPostsCounts };
 };

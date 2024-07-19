@@ -1,8 +1,7 @@
 import { DbClient } from "../../app";
 import { createRepository } from "./repository";
 import { createRouter } from "./router";
-import { createService } from "./service";
-import { GetUsers } from "./types";
+import { createService, GetUsers } from "./service";
 
 export const createPostsFeature = (dbClient: DbClient, getUsers: GetUsers) => {
   const repository = createRepository(dbClient);
