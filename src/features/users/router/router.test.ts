@@ -4,6 +4,7 @@ import { createApp } from "../../../app";
 import { deepEqual } from "node:assert/strict";
 import { config } from "dotenv";
 
+// TODO: setup with a test database.
 describe("users router", () => {
   config({ path: ".env.local" });
 
