@@ -2,6 +2,7 @@ import { config } from "dotenv";
 import { faker } from "@faker-js/faker";
 import { createUsersFeature } from "./features";
 import postgres from "postgres";
+import { createDbClient } from "./db-client";
 
 // Not needed now, but in the future.
 config({ path: ".env.local" });
@@ -11,13 +12,7 @@ const seed = 1;
 const main = async () => {
   faker.seed(seed);
 
-  const dbUrl = process.env.DB_URL;
-
-  if (!dbUrl) {
-    throw new Error("Missing DB_URL.");
-  }
-
-  const dbClient = postgres(dbUrl);
+  const dbClient = createDbClient();
 
   const usersFeature = createUsersFeature(dbClient);
 
