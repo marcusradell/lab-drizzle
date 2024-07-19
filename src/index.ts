@@ -12,7 +12,7 @@ const main = () => {
 
   const app = createApp();
 
-  app.listen(() => {
+  app.listen(port, () => {
     console.log(`App started on port ${port}.`);
   });
 };
