@@ -10,6 +10,3 @@ export const postsTable = pgTable("posts_table", {
     .notNull()
     .$onUpdate(() => new Date()),
 });
-
-export type InsertPost = typeof postsTable.$inferInsert;
-export type SelectPost = typeof postsTable.$inferSelect;
