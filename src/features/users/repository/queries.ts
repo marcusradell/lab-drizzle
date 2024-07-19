@@ -14,7 +14,7 @@ export const createQueries = (db: Db) => {
     return db.select().from(usersTable).where(eq(usersTable.id, id));
   }
 
-  async function createUser(data: InsertUser) {
+  async function addUser(data: InsertUser) {
     await db.insert(usersTable).values(data);
   }
 
@@ -27,5 +27,5 @@ export const createQueries = (db: Db) => {
       .offset((page - 1) * pageSize);
   };
 
-  return { getUserById, createUser, getUsers };
+  return { getUserById, addUser, getUsers };
 };
