@@ -3,11 +3,11 @@ import { createPostsFeature, createUsersFeature } from "./features";
 import { createDbClient } from "./db-client";
 
 export const createApp = () => {
-  const app = express();
+  const expressApp = express();
 
-  app.use(express.json());
+  expressApp.use(express.json());
 
-  app.get("/status", (req, res) => {
+  expressApp.get("/status", (req, res) => {
     res.json({ status: "ready" });
   });
 
@@ -24,7 +24,7 @@ export const createApp = () => {
   apiRouter.use("/users", usersFeature.router);
   apiRouter.use("/posts", postsFeature.router);
 
-  app.use("/api/v1", apiRouter);
+  expressApp.use("/api/v1", apiRouter);
 
-  return app;
+  return { expressApp, dbClient };
 };
