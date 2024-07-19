@@ -1,9 +1,9 @@
-import { eq } from "drizzle-orm";
+import { asc, eq } from "drizzle-orm";
 import { usersTable } from "./schema";
-import { Db, InsertUser, SelectUser } from "./types";
+import { Db, Id, InsertUser } from "./types";
 
 export const createQueries = (db: Db) => {
-  async function getUserById(id: SelectUser["id"]): Promise<
+  async function getUserById(id: Id): Promise<
     Array<{
       id: number;
       name: string;
@@ -18,5 +18,14 @@ export const createQueries = (db: Db) => {
     await db.insert(usersTable).values(data);
   }
 
-  return { getUserById, createUser };
+  const getUsers = async (page: number, pageSize: number) => {
+    return db
+      .select()
+      .from(usersTable)
+      .orderBy(asc(usersTable.id))
+      .limit(pageSize)
+      .offset((page - 1) * pageSize);
+  };
+
+  return { getUserById, createUser, getUsers };
 };
