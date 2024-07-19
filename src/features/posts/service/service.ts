@@ -1,5 +1,6 @@
 import { Repository } from "../repository";
 import { GetUsers, PostsCount } from "./types";
+import { PostInput, postSchema } from "./validation";
 
 export const createService = (repository: Repository, getUsers: GetUsers) => {
   const getPostsCounts = async (
@@ -26,5 +27,11 @@ export const createService = (repository: Repository, getUsers: GetUsers) => {
     return result;
   };
 
-  return { getPostsCounts };
+  const addPost = async (rawPost: PostInput) => {
+    const postInput = postSchema.parse(rawPost);
+
+    repository.addPost(postInput);
+  };
+
+  return { getPostsCounts, addPost };
 };
