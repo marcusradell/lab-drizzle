@@ -34,12 +34,7 @@ export const createRouter = (service: Service) => {
     try {
       const { name, age, email } = req.body;
 
-      // TODO: parse with Zod.
-      const user = { name, age, email };
-
-      console.log({ user });
-
-      await service.addUser(user);
+      await service.addUser({ name, age, email });
 
       res.sendStatus(201);
     } catch (error) {
