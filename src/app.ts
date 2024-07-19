@@ -1,4 +1,6 @@
-import express from "express";
+import express, { Router } from "express";
+import { createPostsFeature, createUsersFeature } from "./features";
+import { createDbClient } from "./db-client";
 
 export const createApp = () => {
   const app = express();
@@ -6,6 +8,21 @@ export const createApp = () => {
   app.get("/status", (req, res) => {
     res.json({ status: "ready" });
   });
+
+  const apiRouter = Router();
+
+  const dbClient = createDbClient();
+
+  const usersFeature = createUsersFeature(dbClient);
+  const postsFeature = createPostsFeature(
+    dbClient,
+    usersFeature.service.getUsers
+  );
+
+  apiRouter.use("/users", usersFeature.router);
+  apiRouter.use("/posts", postsFeature.router);
+
+  app.use("/api/v1", apiRouter);
 
   return app;
 };

@@ -1,3 +1,5 @@
+import { createService } from "./service";
+
 export type GetUsers = (
   page: number,
   pageSize: number
@@ -9,3 +11,5 @@ export type GetUsers = (
     email: string;
   }[]
 >;
+
+export type Service = ReturnType<typeof createService>;
