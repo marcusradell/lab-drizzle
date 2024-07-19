@@ -1,7 +1,7 @@
 import { Repository } from "./repository";
 
 export const createService = (repository: Repository) => {
-  const getUsers = async (page = 1, pageSize = 5) => {
+  const getUsers = async (page: number, pageSize: number) => {
     return repository.getUsers(page, pageSize);
   };
 

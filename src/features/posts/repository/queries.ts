@@ -63,6 +63,7 @@ export const createQueries = (db: Db) => {
   const getPostsCount = async (userIds: number[]) => {
     return db
       .select({
+        userId: postsTable.userId,
         postsCount: count(postsTable.id),
       })
       .from(postsTable)
