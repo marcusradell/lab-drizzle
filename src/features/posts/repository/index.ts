@@ -1,2 +1,2 @@
 export * from "./repository";
-export { Repository } from "./types";
+export { Repository, Id } from "./types";
