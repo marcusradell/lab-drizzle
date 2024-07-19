@@ -1,39 +1,50 @@
 import { Router } from "express";
 import { Service } from "./types";
 
-// TODO: try/catch errors and forward to an error handling middleware.
 export const createRouter = (service: Service) => {
   const router = Router();
 
-  router.get("/", async (req, res) => {
-    const result = await service.getUsers(1, 100);
+  router.get("/", async (req, res, next) => {
+    try {
+      const result = await service.getUsers(1, 100);
 
-    res.json(result);
-  });
-
-  router.get("/:id", async (req, res) => {
-    const id = Number(req.params.id);
-
-    if (isNaN(id)) {
-      throw new Error("Invalid ID from URL.");
+      res.json(result);
+    } catch (error) {
+      next(error);
     }
-
-    const result = await service.getUserById(id);
-
-    res.json(result);
   });
 
-  router.post("/", async (req, res) => {
-    const { name, age, email } = req.body;
+  router.get("/:id", async (req, res, next) => {
+    try {
+      const id = Number(req.params.id);
 
-    // TODO: parse with Zod.
-    const user = { name, age, email };
+      if (isNaN(id)) {
+        throw new Error("Invalid ID from URL.");
+      }
 
-    console.log({ user });
+      const result = await service.getUserById(id);
 
-    await service.addUser(user);
+      res.json(result);
+    } catch (error) {
+      next(error);
+    }
+  });
 
-    res.sendStatus(201);
+  router.post("/", async (req, res, next) => {
+    try {
+      const { name, age, email } = req.body;
+
+      // TODO: parse with Zod.
+      const user = { name, age, email };
+
+      console.log({ user });
+
+      await service.addUser(user);
+
+      res.sendStatus(201);
+    } catch (error) {
+      next(error);
+    }
   });
 
   return router;
