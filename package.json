@@ -6,7 +6,9 @@
     "dev": "tsx watch ./src/index.ts",
     "generate": "drizzle-kit generate",
     "migrate": "drizzle-kit migrate",
-    "sandbox": "tsx ./src/sandbox.ts"
+    "sandbox": "tsx ./src/sandbox.ts",
+    "build": "tsc",
+    "start": "node dist/index.js"
   },
   "keywords": [],
   "author": "",
