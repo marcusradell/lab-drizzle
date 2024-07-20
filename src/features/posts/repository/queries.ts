@@ -9,6 +9,7 @@ import {
 } from "drizzle-orm";
 import { postsTable } from "./schema";
 import { Db, InsertPost } from "./types";
+import { UserId } from "../types";
 
 // TODO: reimplement
 // export async function getPostsCount(
@@ -60,7 +61,7 @@ export const createQueries = (db: Db) => {
       .offset((page - 1) * pageSize);
   }
 
-  const getPostsCount = async (userIds: number[]) => {
+  const getPostsCount = async (userIds: UserId[]) => {
     return db
       .select({
         userId: postsTable.userId,

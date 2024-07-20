@@ -1,9 +1,9 @@
-import { Id } from "../repository";
+import { UserId } from "../types";
 import { createService } from "./service";
 
 export type PostsCount = {
   postsCount: number;
-  id: Id;
+  id: UserId;
   name: string;
   age: number;
   email: string;
@@ -14,7 +14,7 @@ export type GetUsers = (
   pageSize: number
 ) => Promise<
   {
-    id: Id;
+    id: UserId;
     name: string;
     age: number;
     email: string;

@@ -16,9 +16,9 @@ export const createRouter = (service: Service) => {
 
   router.get("/:id", async (req, res, next) => {
     try {
-      const id = Number(req.params.id);
+      const id = req.params.id;
 
-      if (isNaN(id)) {
+      if (!id) {
         throw new Error("Invalid ID from URL.");
       }
 

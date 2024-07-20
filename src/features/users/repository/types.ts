@@ -4,8 +4,11 @@ import { createRepository } from ".";
 
 export type Db = PostgresJsDatabase<typeof schema>;
 
-export type InsertUser = typeof schema.usersTable.$inferInsert;
+export type InsertUser = Omit<
+  typeof schema.usersTable.$inferInsert,
+  "serialId"
+>;
 export type SelectUser = typeof schema.usersTable.$inferSelect;
-export type Id = SelectUser["id"];
+export type UserId = SelectUser["id"];
 
 export type Repository = ReturnType<typeof createRepository>;

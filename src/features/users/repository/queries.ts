@@ -1,11 +1,11 @@
 import { asc, eq } from "drizzle-orm";
 import { usersTable } from "./schema";
-import { Db, Id, InsertUser } from "./types";
+import { Db, UserId, InsertUser } from "./types";
 
 export const createQueries = (db: Db) => {
-  async function getUserById(id: Id): Promise<
+  async function getUserById(id: UserId): Promise<
     Array<{
-      id: number;
+      id: string;
       name: string;
       age: number;
       email: string;
